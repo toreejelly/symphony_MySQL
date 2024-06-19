@@ -1,0 +1,201 @@
+-- 회원가입 테이블
+CREATE TABLE user_tb (
+    id 		VARCHAR2(10) 	NOT NULL PRIMARY KEY,
+    passwd	VARCHAR2(10) 	NOT NULL,
+    uname 	VARCHAR2(20) 	NOT NULL,
+    gender 	VARCHAR2(10) 	NOT NULL,
+    email 	VARCHAR2(50) 	NOT NULL,
+    tel		VARCHAR2(14) 	NOT NULL,
+    zipcode	VARCHAR2(7) 	NOT NULL,
+    address1 	VARCHAR2(255) 	NOT NULL,
+    address2 	VARCHAR2(255) 	NULL,
+    udate 	DATE 			NOT NULL,
+    ulevel VARCHAR2(2) NOT NULL
+);
+
+
+-- 질문 테이블
+CREATE TABLE ques_tb (
+    Q_CODE 		VARCHAR2(10) 	NOT NULL PRIMARY KEY,
+    Q_CONTENT	VARCHAR2(2000) 	NOT NULL
+);
+
+insert into ques_tb(q_code, q_content)
+values('que01', '1. 어떤 악기를 수강하고 싶으신가요?');
+
+insert into ques_tb(q_code, q_content)
+values('que02', '2. 선호하는 강사의 성별은?');
+
+insert into ques_tb(q_code, q_content)
+values('que03', '3. 수업을 어떤 형태로 진행하고 싶으신가요?');
+
+insert into ques_tb(q_code, q_content)
+values('que04', '4. 어느 지역에서 수강을 원하시나요?');
+
+
+-- 답변 테이블
+CREATE TABLE ans_tb (
+    Q_CODE 		VARCHAR2(10) NOT NULL,
+    A_CODE		VARCHAR2(50) NOT NULL PRIMARY KEY,
+    A_CONTENT 	VARCHAR2(50) NOT NULL,
+    FOREIGN KEY (Q_CODE) REFERENCES ques_tb(Q_CODE)
+    ON DELETE CASCADE
+);
+
+insert into ans_tb(q_code, a_code, a_content)
+values('que01', 'classic_p', '클래식 피아노');
+insert into ans_tb(q_code, a_code, a_content)
+values('que01', 'jazz_p', '재즈 피아노');
+insert into ans_tb(q_code, a_code, a_content)
+values('que01', 'pop_p', '팝/뉴에이지 피아노');
+insert into ans_tb(q_code, a_code, a_content)
+values('que01', 'acou_g', '통기타');
+insert into ans_tb(q_code, a_code, a_content)
+values('que01', 'elec_g', '일렉기타');
+insert into ans_tb(q_code, a_code, a_content)
+values('que01', 'bass_g', '베이스기타');
+insert into ans_tb(q_code, a_code, a_content)
+values('que01', 'vio', '바이올린');
+
+insert into ans_tb(q_code, a_code, a_content)
+values('que02', 'M', '남자');
+insert into ans_tb(q_code, a_code, a_content)
+values('que02', 'F', '여자');
+insert into ans_tb(q_code, a_code, a_content)
+values('que02', 'E', '상관없음');
+
+insert into ans_tb(q_code, a_code, a_content)
+values('que03', 'online', '실시간 온라인 화상수업');
+insert into ans_tb(q_code, a_code, a_content)
+values('que03', 'ttos', '선생님이 레슨생에게 방문');
+insert into ans_tb(q_code, a_code, a_content)
+values('que03', 'stot', '레슨생이 선생님에게 방문');
+
+insert into ans_tb(q_code, a_code, a_content)
+values('que04', 'seoul', '서울특별시');
+insert into ans_tb(q_code, a_code, a_content)
+values('que04', 'gg', '경기도');
+insert into ans_tb(q_code, a_code, a_content)
+values('que04', 'in', '인천');
+insert into ans_tb(q_code, a_code, a_content)
+values('que04', 'dontcare', '온라인수업 참여');
+
+
+-- 결과 테이블
+CREATE TABLE result_tb (
+    ID 		VARCHAR2(10) 	NOT NULL,
+    Q01ANS 	VARCHAR2(50) 	NOT NULL,
+    Q02ANS 	VARCHAR2(50) 	NOT NULL,
+    Q03ANS 	VARCHAR2(50) 	NOT NULL,
+    Q04ANS 	VARCHAR2(50) 	NOT NULL,
+    FOREIGN KEY (ID) REFERENCES user_tb(ID),
+    FOREIGN KEY (Q01ANS) REFERENCES ans_tb(A_CODE),
+    FOREIGN KEY (Q02ANS) REFERENCES ans_tb(A_CODE),
+    FOREIGN KEY (Q03ANS) REFERENCES ans_tb(A_CODE),
+    FOREIGN KEY (Q04ANS) REFERENCES ans_tb(A_CODE)
+    ON DELETE CASCADE
+);
+
+
+--강의등록 테이블
+CREATE TABLE lesson_tb (
+    C_ID        	NUMBER    		NOT NULL    PRIMARY KEY
+    ,ID         		VARCHAR2(10)    	NOT NULL
+    ,C_TITLE    	VARCHAR2(100)   	NOT NULL
+    ,PROF_PHOTO 	VARCHAR2(255)   	NULL
+    ,C_CONTENT  	VARCHAR2(4000)  	NOT NULL
+    ,Q01ANS     	VARCHAR2(50)    	NOT NULL
+    ,Q03ANS     	VARCHAR2(50)     	NOT NULL
+    ,Q04ANS     	VARCHAR2(50)     	NOT NULL
+    ,C_TIME    	VARCHAR2(100)    	NOT NULL
+    ,C_DATE     	VARCHAR2(50)     	NOT NULL
+    ,PRICE      	NUMBER         	NOT NULL
+    ,DDATE      	DATE        		NOT NULL
+    ,FOREIGN KEY (ID) REFERENCES user_tb(ID)
+    ON DELETE CASCADE
+);
+
+-- 주문서 테이블
+CREATE TABLE payment_tb 
+(
+  ORDER_ID VARCHAR2(50) 	NOT NULL PRIMARY KEY 	-- 주문서 번호
+, ID 		VARCHAR2(10) 	NOT NULL                   	-- 아이디
+, PAY_WITH 	VARCHAR2(10) 	NOT NULL            	-- 결제번호   
+, PAY_TIME 	DATE 			NOT NULL                     -- 결제시간
+, T_PAY 	NUMBER 		NOT NULL                     -- 총결제금액
+, CONFIRM 	VARCHAR2(10) 	NOT NULL              	-- 확인   
+, C_ID 	NUMBER 		NOT NULL                    	-- 강의코드   
+, FOREIGN KEY (ID) REFERENCES user_tb(ID)
+, FOREIGN KEY (C_ID) REFERENCES lesson_tb(C_ID)
+  ON DELETE CASCADE
+); 
+
+-- 주문상세내역서 테이블
+CREATE TABLE paydetail_tb 
+(
+  ORDER_ID 	VARCHAR2(50) 	NOT NULL 
+, S_TIME 	VARCHAR2(50) 	NOT NULL 
+, S_DATE 	VARCHAR2(50) 	NOT NULL 
+, T_TIME 	NUMBER 		NOT NULL 
+, FOREIGN KEY (ORDER_ID) REFERENCES payment_tb(ORDER_ID)
+  ON DELETE CASCADE
+);
+
+
+CREATE TABLE notice_tb(
+    W_NUM 	 	NUMBER          	NOT NULL 		 --글번호
+    ,ID      		VARCHAR2(10)   	NOT NULL  		 --아이디
+    ,W_TITLE 		VARCHAR2(500)   	NOT NULL 		 --제목
+    ,W_TEXT  		VARCHAR2(1000)	NOT NULL  		 --내용
+    ,W_PIC   		VARCHAR2(255)          			 --영상
+    ,W_PICPATH  	VARCHAR2(255) 				 --사진.영상 경로
+    ,W_DATE  	DATE            	NOT NULL  		 --작성일
+    ,W_RDATE 	DATE					  	 --수정일	
+    ,W_LIKE  		NUMBER           				 --좋아요
+    ,W_VIEWS 	NUMBER   		DEFAULT 0		 --조회수
+    ,W_CODE  	VARCHAR2(10)    	NOT NULL 		 --구분코드(공지사항:n / 이벤트:e / 수강후기:r)
+    ,W_PIN      	NUMBER          	DEFAULT 0             --글 고정
+    ,constraint notice_tb_PK primary key(W_NUM, W_CODE)
+    ,FOREIGN KEY (ID) REFERENCES user_tb(ID) 
+    ON DELETE CASCADE
+);
+
+-- 좋아요 테이블
+CREATE TABLE like_tb(
+     LIKE_NUM NUMBER         NOT NULL PRIMARY KEY
+    ,W_NUM    NUMBER         NOT NULL
+    ,W_CODE   VARCHAR2(10)  NOT NULL
+    ,ID       	 VARCHAR2(10)   NOT NULL
+    ,FOREIGN KEY (ID) REFERENCES user_tb(ID)
+    ,FOREIGN KEY (W_NUM, W_CODE) REFERENCES notice_tb(W_NUM, W_CODE)
+    ON DELETE CASCADE
+);
+
+
+--시퀀스
+create sequence lesson_seq;
+create sequence event_seq;
+create sequence notice_seq;
+create sequence review_seq;
+create sequence user_seq;
+
+create sequence notice_seq
+INCREMENT BY 1 --증감숫자 1
+START WITH 1
+NOCACHE
+ORDER; --시작숫자 1
+
+create sequence event_seq
+INCREMENT BY 1 --증감숫자 1
+START WITH 1
+NOCACHE; --시작숫자 1
+
+create sequence review_seq
+INCREMENT BY 1 --증감숫자 1
+START WITH 1
+NOCACHE; --시작숫자 1
+
+create sequence payment_seq
+INCREMENT BY 1 --증감숫자 1
+START WITH 1
+NOCACHE; --시작숫자 1

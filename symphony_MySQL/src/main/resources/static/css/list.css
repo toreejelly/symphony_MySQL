@@ -1,0 +1,52 @@
+@charset "UTF-8";
+
+.body{
+   padding-left: 10%;
+   padding-right:10% ;
+   font-size: 15px;
+	margin-top:2%; 
+}
+
+.btn{
+	width:8%;
+	margin-top:2%;
+	float: right;
+}
+
+.form-control{
+ 
+  height:35px;
+  font-size:5px;
+}
+
+.table{
+	margin-top:2%;
+}
+
+.btn-sub{
+	width:42px;
+  height:35px;
+  font-size:5px;
+}
+
+body,h1,h2,h3,h4,h5,h6 {
+	font-family: "Raleway", sans-serif
+}
+
+.w3-row-padding{
+	margin-top:5%;
+}
+
+.flo-le{
+	float: left;
+}
+
+.flo-rig{
+	float: right;
+}
+
+.paging{
+	justify-content: center;
+	float: center;
+	padding: 8px 16px 0px 600px;
+}
