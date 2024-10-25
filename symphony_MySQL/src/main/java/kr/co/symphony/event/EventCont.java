@@ -76,7 +76,7 @@ public class EventCont {
         mav.setViewName("board/eventList");
 
         return mav;
-    }//list() end.
+    }//list() end..
 
 	
 	@RequestMapping(value = "eventDetail.do", method = RequestMethod.GET)	//createForm을 post로 보냈는데 
