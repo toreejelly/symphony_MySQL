@@ -67,7 +67,7 @@
 				}
 				int totalRecord=dao1.count2(col, word);
 %>			
-					<!-- 페이지 리스트 -->
+					<!-- 페이지 리스트. -->
 					<tr>
 						<td colspan='4' style='text-align:center; height:50px;'>
 <%
