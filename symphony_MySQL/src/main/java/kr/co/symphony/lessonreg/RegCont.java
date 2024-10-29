@@ -39,7 +39,7 @@ public class RegCont {
 		ModelAndView mav=new ModelAndView();
 		mav.setViewName("lesson/msgView"); 	
 		
-		// 파일 저장 폴더의 실제 물리적 경로 가져오기
+		// 파일 저장 폴더의 실제 물리적 경로 가져오기.
 		String basePath=req.getRealPath("/storage");
 		
 		// 1) <input type="file" name="posterMF" size="50">
