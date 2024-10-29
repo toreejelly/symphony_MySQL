@@ -100,7 +100,7 @@ public class RegCont {
 		ModelAndView mav=new ModelAndView();
 		mav.setViewName("lesson/msgView"); 	
 		
-		// 삭제하고자 하는 글정보 가져오기 (/storage 폴더에서 삭제할 파일명을 확인하기 위해)
+		// 삭제하고자 하는 글정보 가져오기 (/storage 폴더에서 삭제할 파일명을 확인하기 위해).
 		RegDTO oldDTO = dao.r_detail(dto);
 	
 		int cnt=dao.delete(c_id);						
