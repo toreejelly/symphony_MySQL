@@ -46,7 +46,7 @@ public class RegCont {
 		MultipartFile prof_photoMF = dto.getProf_photoMF(); // 파일 가져오기
 		// /storage 폴더에 파일 저장하고, rename된 파일명 반환
 		String prof_photo = UploadSaveManager.saveFileSpring30(prof_photoMF, basePath);
-		dto.setProf_photo(prof_photo); // rename된 파일명을 dto 객체 담기
+		dto.setProf_photo(prof_photo); // rename된 파일명을 dto 객체 담기.
 		
 		String id = (String)session.getAttribute("s_id");
 		dto.setId(id);
