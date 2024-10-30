@@ -58,7 +58,7 @@ public class NoticeCont {
 			mav.addObject("url", "/noticeCreate.do" );	
 	
 			}else {
-			String msg="글쓰기에 성공했습니다.";
+			String msg="글쓰기에 성공했습니다..";
 			
 			mav.addObject("msg", msg );
 			mav.addObject("url", "/noticeList.do" );
