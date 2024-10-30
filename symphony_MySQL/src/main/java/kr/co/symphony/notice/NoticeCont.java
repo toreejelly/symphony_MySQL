@@ -33,7 +33,7 @@ public class NoticeCont {
 		System.out.println("noticeCreate.do >>>>>> createForm");
 		
 		return "board/noticeCreate";  
-	}//createForm() end
+	}//createForm() end.
 
 
 	@RequestMapping(value = "noticeCreate.do", method = RequestMethod.POST) 
