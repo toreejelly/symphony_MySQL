@@ -74,7 +74,7 @@ public class NoticeCont {
         mav.setViewName("board/noticeList");
 
         return mav;
-    }//list() end
+    }//list() end.
 
 	@RequestMapping(value = "noticeDetail.do", method = RequestMethod.GET)	
 	public ModelAndView detailForm(@ModelAttribute NoticeDTO dto) {
