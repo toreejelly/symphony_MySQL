@@ -91,7 +91,7 @@ public class NoticeCont {
 		
 		return mav;
 		
-	}//detailForm() end..
+	}//detailForm() end
 
 	
 	
