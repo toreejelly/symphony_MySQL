@@ -112,7 +112,7 @@ public class EventCont {
 			mav.addObject("url", "/eventDetail.do" );	
 	
 			}else {
-			String msg="이벤트 삭제에 성공했습니다..";
+			String msg="이벤트 삭제에 성공했습니다.";
 			
 			mav.addObject("msg", msg );
 			mav.addObject("url", "/eventList.do" );
