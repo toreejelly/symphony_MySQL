@@ -93,7 +93,7 @@ public class EventCont {
 		mav.addObject("detail", dao.detail(dto));
 		
 		return mav;
-	}//detailForm() end
+	}//detailForm() end..
 	
 	@RequestMapping(value = "eventDelete.do", method = RequestMethod.GET)
 	public ModelAndView deleteProc(int wNum) {
