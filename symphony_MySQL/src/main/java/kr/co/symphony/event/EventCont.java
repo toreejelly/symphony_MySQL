@@ -131,7 +131,7 @@ public class EventCont {
 		
 		return mav;
 		
-	}//updateForm() end
+	}//updateForm() end.
 	
 	
 	@RequestMapping(value = "eventUpdate.do", method = RequestMethod.GET)
