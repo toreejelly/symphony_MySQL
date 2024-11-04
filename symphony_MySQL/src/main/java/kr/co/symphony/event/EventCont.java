@@ -106,7 +106,7 @@ public class EventCont {
 		int cnt=dao.delete(wNum);						
 		
 		if(cnt==0) {
-			String msg="이벤트 삭제에 실패했습니다.";		
+			String msg="이벤트 삭제에 실패했습니다..";		
 			
 			mav.addObject("msg", msg );
 			mav.addObject("url", "/eventDetail.do" );	
