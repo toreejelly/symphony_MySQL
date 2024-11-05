@@ -54,6 +54,7 @@ private PayDAO dao = null;
 		ModelAndView mav = new ModelAndView();
 		
 		//노란줄 생기는 부분 노란줄 없애는 주석
+		
 		@SuppressWarnings("unchecked")
 		//세션에 담아둔 데이터 가져옴
 		ArrayList<PayDTO> items = (ArrayList<PayDTO>) session.getAttribute("check");
